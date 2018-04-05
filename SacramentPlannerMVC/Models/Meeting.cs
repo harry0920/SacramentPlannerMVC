@@ -41,5 +41,7 @@ namespace SacramentPlannerMVC.Models
 
         [Required]
         public Bishopric Conductor { get; set; }
+
+        public ICollection<Speaker> Speakers { get; set; }
     }
 }

@@ -14,8 +14,5 @@ namespace SacramentPlannerMVC.Models
         [StringLength(50)]
         [Required]
         public string Subject { get; set; }
-
-        [Required]
-        public Meeting Meeting { get; set; }
     }
 }
