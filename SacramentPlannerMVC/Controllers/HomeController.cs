@@ -8,6 +8,7 @@ using SacramentPlannerMVC.Models;
 
 namespace SacramentPlannerMVC.Controllers
 {
+
     public class HomeController : Controller
     {
         public IActionResult Index()
