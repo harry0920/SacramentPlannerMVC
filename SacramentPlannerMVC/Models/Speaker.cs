@@ -7,6 +7,8 @@ namespace SacramentPlannerMVC.Models
 {
     public class Speaker
     {
+        public int ID { get; set; }
+
         [StringLength(50)]
         [Required]
         public string Name { get; set; }

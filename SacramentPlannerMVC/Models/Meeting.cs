@@ -7,6 +7,7 @@ namespace SacramentPlannerMVC.Models
 {
     public class Meeting
     {
+        public int ID { get; set; }
         [Required]
         public DateTime Date { get; set; }
         
