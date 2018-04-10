@@ -5,6 +5,8 @@ namespace SacramentPlannerMVC.Models
 {
     public class Bishopric
     {
+        public int ID { get; set; }
+
         [StringLength(100)]
         [Required]
         public string Name { get; set; }
