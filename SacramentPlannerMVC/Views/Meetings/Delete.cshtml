@@ -53,6 +53,12 @@
         <dd>
             @Html.DisplayFor(model => model.ClosingPrayer)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Conductor)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Conductor.Discriminator)
+        </dd>
     </dl>
     
     <form asp-action="Delete">

@@ -8,7 +8,11 @@ namespace SacramentPlannerMVC.Models
     public class Meeting
     {
         public int ID { get; set; }
+
         [Required]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Meeting Date")]
         public DateTime Date { get; set; }
         
         [Range(1, 341)]
@@ -40,6 +44,7 @@ namespace SacramentPlannerMVC.Models
         [Required]
         public string ClosingPrayer { get; set; }
 
+        public int BishopricID { get; set; }
         [Required]
         public Bishopric Conductor { get; set; }
 

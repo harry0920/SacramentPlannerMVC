@@ -22,7 +22,8 @@ namespace SacramentPlannerMVC.Controllers
         // GET: Meetings
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Meetings.ToListAsync());
+            var sacramentContext = _context.Meetings.Include(m => m.Conductor);
+            return View(await sacramentContext.ToListAsync());
         }
 
         // GET: Meetings/Details/5
@@ -34,6 +35,7 @@ namespace SacramentPlannerMVC.Controllers
             }
 
             var meeting = await _context.Meetings
+                .Include(m => m.Conductor)
                 .SingleOrDefaultAsync(m => m.ID == id);
             if (meeting == null)
             {
@@ -46,6 +48,7 @@ namespace SacramentPlannerMVC.Controllers
         // GET: Meetings/Create
         public IActionResult Create()
         {
+            ViewData["BishopricID"] = new SelectList(_context.Bishopric, "ID", "Discriminator");
             return View();
         }
 
@@ -54,7 +57,7 @@ namespace SacramentPlannerMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Date,OpeningHymn,SacramentHymn,IntermediateHymn,ClosingHymn,OpeningPrayer,ClosingPrayer")] Meeting meeting)
+        public async Task<IActionResult> Create([Bind("ID,Date,OpeningHymn,SacramentHymn,IntermediateHymn,ClosingHymn,OpeningPrayer,ClosingPrayer,BishopricID")] Meeting meeting)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +65,7 @@ namespace SacramentPlannerMVC.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["BishopricID"] = new SelectList(_context.Bishopric, "ID", "Discriminator", meeting.BishopricID);
             return View(meeting);
         }
 
@@ -78,6 +82,7 @@ namespace SacramentPlannerMVC.Controllers
             {
                 return NotFound();
             }
+            ViewData["BishopricID"] = new SelectList(_context.Bishopric, "ID", "Discriminator", meeting.BishopricID);
             return View(meeting);
         }
 
@@ -86,7 +91,7 @@ namespace SacramentPlannerMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Date,OpeningHymn,SacramentHymn,IntermediateHymn,ClosingHymn,OpeningPrayer,ClosingPrayer")] Meeting meeting)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Date,OpeningHymn,SacramentHymn,IntermediateHymn,ClosingHymn,OpeningPrayer,ClosingPrayer,BishopricID")] Meeting meeting)
         {
             if (id != meeting.ID)
             {
@@ -113,6 +118,7 @@ namespace SacramentPlannerMVC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["BishopricID"] = new SelectList(_context.Bishopric, "ID", "Discriminator", meeting.BishopricID);
             return View(meeting);
         }
 
@@ -125,6 +131,7 @@ namespace SacramentPlannerMVC.Controllers
             }
 
             var meeting = await _context.Meetings
+                .Include(m => m.Conductor)
                 .SingleOrDefaultAsync(m => m.ID == id);
             if (meeting == null)
             {
