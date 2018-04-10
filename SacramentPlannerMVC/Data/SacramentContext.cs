@@ -10,7 +10,7 @@ namespace SacramentPlannerMVC.Data
 
         }
 
-        public DbSet<Bishopric> Bishoprics { get; set; }
+        public DbSet<Bishopric> Bishopric { get; set; }
         public DbSet<Meeting> Meetings { get; set; }
        // public DbSet<Speaker> Speakers { get; set; }
 

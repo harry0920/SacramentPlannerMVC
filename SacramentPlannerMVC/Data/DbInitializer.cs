@@ -12,7 +12,7 @@ namespace SacramentPlannerMVC.Data
         {
             context.Database.EnsureCreated();
 
-            if (context.Bishoprics.Any())
+            if (context.Bishopric.Any())
             {
                 return;
             }
@@ -25,7 +25,7 @@ namespace SacramentPlannerMVC.Data
             };
             foreach (Bishopric b in bishoprics)
             {
-                context.Bishoprics.Add(b);
+                context.Bishopric.Add(b);
             }
 
             var members = new Member[]

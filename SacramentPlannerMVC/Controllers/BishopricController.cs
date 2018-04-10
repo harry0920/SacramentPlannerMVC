@@ -10,22 +10,22 @@ using SacramentPlannerMVC.Models;
 
 namespace SacramentPlannerMVC.Controllers
 {
-    public class BishopricsController : Controller
+    public class BishopricController : Controller
     {
         private readonly SacramentContext _context;
 
-        public BishopricsController(SacramentContext context)
+        public BishopricController(SacramentContext context)
         {
             _context = context;
         }
 
-        // GET: Bishoprics
+        // GET: Bishopric
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Bishoprics.ToListAsync());
+            return View(await _context.Bishopric.ToListAsync());
         }
 
-        // GET: Bishoprics/Details/5
+        // GET: Bishopric/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,7 +33,7 @@ namespace SacramentPlannerMVC.Controllers
                 return NotFound();
             }
 
-            var bishopric = await _context.Bishoprics
+            var bishopric = await _context.Bishopric
                 .SingleOrDefaultAsync(m => m.ID == id);
             if (bishopric == null)
             {
@@ -43,18 +43,18 @@ namespace SacramentPlannerMVC.Controllers
             return View(bishopric);
         }
 
-        // GET: Bishoprics/Create
+        // GET: Bishopric/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Bishoprics/Create
+        // POST: Bishopric/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Name,IsActive")] Bishopric bishopric)
+        public async Task<IActionResult> Create([Bind("IsActive,ID,LastName,FirstMidName")] Bishopric bishopric)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace SacramentPlannerMVC.Controllers
             return View(bishopric);
         }
 
-        // GET: Bishoprics/Edit/5
+        // GET: Bishopric/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,7 +73,7 @@ namespace SacramentPlannerMVC.Controllers
                 return NotFound();
             }
 
-            var bishopric = await _context.Bishoprics.SingleOrDefaultAsync(m => m.ID == id);
+            var bishopric = await _context.Bishopric.SingleOrDefaultAsync(m => m.ID == id);
             if (bishopric == null)
             {
                 return NotFound();
@@ -81,12 +81,12 @@ namespace SacramentPlannerMVC.Controllers
             return View(bishopric);
         }
 
-        // POST: Bishoprics/Edit/5
+        // POST: Bishopric/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,IsActive")] Bishopric bishopric)
+        public async Task<IActionResult> Edit(int id, [Bind("IsActive,ID,LastName,FirstMidName")] Bishopric bishopric)
         {
             if (id != bishopric.ID)
             {
@@ -116,7 +116,7 @@ namespace SacramentPlannerMVC.Controllers
             return View(bishopric);
         }
 
-        // GET: Bishoprics/Delete/5
+        // GET: Bishopric/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,7 +124,7 @@ namespace SacramentPlannerMVC.Controllers
                 return NotFound();
             }
 
-            var bishopric = await _context.Bishoprics
+            var bishopric = await _context.Bishopric
                 .SingleOrDefaultAsync(m => m.ID == id);
             if (bishopric == null)
             {
@@ -134,20 +134,20 @@ namespace SacramentPlannerMVC.Controllers
             return View(bishopric);
         }
 
-        // POST: Bishoprics/Delete/5
+        // POST: Bishopric/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var bishopric = await _context.Bishoprics.SingleOrDefaultAsync(m => m.ID == id);
-            _context.Bishoprics.Remove(bishopric);
+            var bishopric = await _context.Bishopric.SingleOrDefaultAsync(m => m.ID == id);
+            _context.Bishopric.Remove(bishopric);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool BishopricExists(int id)
         {
-            return _context.Bishoprics.Any(e => e.ID == id);
+            return _context.Bishopric.Any(e => e.ID == id);
         }
     }
 }
