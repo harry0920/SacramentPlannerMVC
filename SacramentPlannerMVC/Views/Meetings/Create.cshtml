@@ -18,6 +18,13 @@
                 <span asp-validation-for="Date" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Conductor" class="control-label"></label>
+                <select asp-for="BishopricID" class="form-control" asp-items="ViewBag.BishopricID">
+                    <option value="">-- Select Conductor --</option>
+                </select>
+                <span asp-validation-for="BishopricID" class="text-danger" />
+            </div>
+            <div class="form-group">
                 <label asp-for="OpeningHymn" class="control-label"></label>
                 <input asp-for="OpeningHymn" class="form-control" />
                 <span asp-validation-for="OpeningHymn" class="text-danger"></span>
