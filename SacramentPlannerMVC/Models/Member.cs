@@ -29,7 +29,7 @@ namespace SacramentPlannerMVC.Models
         {
             get
             {
-                return LastName + ", " + FirstMidName;
+                return FirstMidName + " " + LastName;
             }
         }
     }
