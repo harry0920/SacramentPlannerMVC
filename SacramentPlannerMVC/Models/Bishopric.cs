@@ -5,10 +5,7 @@ namespace SacramentPlannerMVC.Models
 {
     public class Bishopric: Member
     {
-      
         [Required]
-        public bool IsActive { get; set; }
-
-       
+        public bool IsActive { get; set; }       
     }
 }
