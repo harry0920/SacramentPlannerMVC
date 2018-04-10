@@ -48,7 +48,7 @@ namespace SacramentPlannerMVC.Controllers
         // GET: Meetings/Create
         public IActionResult Create()
         {
-            ViewData["BishopricID"] = new SelectList(_context.Bishopric, "ID", "Discriminator");
+            ViewData["BishopricID"] = new SelectList(_context.Bishopric.Where(b => b.IsActive == true), "ID", "FullName");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace SacramentPlannerMVC.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BishopricID"] = new SelectList(_context.Bishopric, "ID", "Discriminator", meeting.BishopricID);
+            ViewData["BishopricID"] = new SelectList(_context.Bishopric.Where(b => b.IsActive == true), "ID", "FullName", meeting.BishopricID);
             return View(meeting);
         }
 
