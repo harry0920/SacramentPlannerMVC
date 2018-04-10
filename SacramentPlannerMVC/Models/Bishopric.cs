@@ -3,15 +3,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SacramentPlannerMVC.Models
 {
-    public class Bishopric
+    public class Bishopric: Member
     {
-        public int ID { get; set; }
-
-        [StringLength(100)]
-        [Required]
-        public string Name { get; set; }
-
+      
         [Required]
         public bool IsActive { get; set; }
+
+       
     }
 }

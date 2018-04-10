@@ -5,13 +5,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SacramentPlannerMVC.Models
 {
-    public class Speaker
+    public class Speaker: Member
     {
-        public int ID { get; set; }
-
-        [StringLength(50)]
-        [Required]
-        public string Name { get; set; }
+        public int MemberID { get; set; }
 
         [StringLength(50)]
         [Required]
