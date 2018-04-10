@@ -48,7 +48,7 @@ namespace SacramentPlannerMVC.Controllers
         // GET: Meetings/Create
         public IActionResult Create()
         {
-            PopulateBishopricDropDownList();
+            ViewData["BishopricID"] = new SelectList(_context.Bishopric.Where(b => b.IsActive == true), "ID", "FullName");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace SacramentPlannerMVC.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            PopulateBishopricDropDownList(meeting.BishopricID);
+            ViewData["BishopricID"] = new SelectList(_context.Bishopric.Where(b => b.IsActive == true), "ID", "FullName", meeting.BishopricID);
             return View(meeting);
         }
 
@@ -120,14 +120,6 @@ namespace SacramentPlannerMVC.Controllers
             }
             ViewData["BishopricID"] = new SelectList(_context.Bishopric, "ID", "Discriminator", meeting.BishopricID);
             return View(meeting);
-        }
-
-        private void PopulateBishopricDropDownList(object selectedConductor = null)
-        {
-            var bishopricQuery = from b in _context.Bishopric
-                                 orderby b.FullName
-                                 select b;
-            ViewBag.BishopricID = new SelectList(bishopricQuery.AsNoTracking(), "BishopricID", "FullName", selectedConductor);
         }
 
         // GET: Meetings/Delete/5

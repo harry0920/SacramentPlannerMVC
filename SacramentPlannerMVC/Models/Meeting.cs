@@ -44,8 +44,8 @@ namespace SacramentPlannerMVC.Models
         [Required]
         public string ClosingPrayer { get; set; }
 
-        public int BishopricID { get; set; }
         [Required]
+        public int BishopricID { get; set; }
         public Bishopric Conductor { get; set; }
 
         public ICollection<Speaker> Speakers { get; set; }
