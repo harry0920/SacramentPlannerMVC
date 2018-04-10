@@ -15,24 +15,6 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Date)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.OpeningHymn)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.SacramentHymn)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.IntermediateHymn)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ClosingHymn)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.OpeningPrayer)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ClosingPrayer)
-                </th>
             <th>
                 @Html.DisplayNameFor(model => model.Conductor)
             </th>
@@ -46,25 +28,7 @@
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.OpeningHymn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SacramentHymn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IntermediateHymn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ClosingHymn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OpeningPrayer)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ClosingPrayer)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Conductor)
+                @Html.DisplayFor(modelItem => item.Conductor.FullName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
