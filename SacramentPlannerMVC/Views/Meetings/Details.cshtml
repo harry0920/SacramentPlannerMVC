@@ -32,13 +32,31 @@
             @Html.DisplayNameFor(model => model.Conductor)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Conductor.Discriminator)
+            @Html.DisplayFor(model => model.Conductor.FullName)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Hymn)
+            @Html.DisplayNameFor(model => model.OpeningHymnID)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Hymn.HymnID)
+            @Html.DisplayFor(model => model.Hymn.HymnLabel)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SacramentHymnID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Hymn.HymnLabel)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IntermediateHymnID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Hymn.HymnLabel)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ClosingHymnID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ClosingHymnID)
         </dd>
     </dl>
 </div>

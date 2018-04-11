@@ -62,7 +62,7 @@ namespace SacramentPlannerMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Date,OpeningPrayer,ClosingPrayer,BishopricID,HymnID")] Meeting meeting)
+        public async Task<IActionResult> Create([Bind("ID,Date,OpeningPrayer,ClosingPrayer,BishopricID,OpeningHymnID,SacramentHymnID,IntermediateHymnID,ClosingHymnID")] Meeting meeting)
         {
             if (ModelState.IsValid)
             {
