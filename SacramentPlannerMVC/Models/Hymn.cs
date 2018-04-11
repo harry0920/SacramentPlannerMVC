@@ -10,5 +10,13 @@ namespace SacramentPlannerMVC.Models
         public int HymnID { get; set; }
         public int HymnNumber { get; set; }
         public string HymnTitle { get; set; }
+
+        public string HymnLabel
+        {
+            get
+            {
+                return HymnID + " - " + HymnTitle;
+            }
+        }
     }
 }

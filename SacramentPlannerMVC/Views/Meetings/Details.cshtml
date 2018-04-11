@@ -17,30 +17,6 @@
             @Html.DisplayFor(model => model.Date)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.OpeningHymn)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.OpeningHymn)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.SacramentHymn)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.SacramentHymn)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.IntermediateHymn)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.IntermediateHymn)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ClosingHymn)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ClosingHymn)
-        </dd>
-        <dt>
             @Html.DisplayNameFor(model => model.OpeningPrayer)
         </dt>
         <dd>
@@ -56,7 +32,13 @@
             @Html.DisplayNameFor(model => model.Conductor)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Conductor.FullName)
+            @Html.DisplayFor(model => model.Conductor.Discriminator)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Hymn)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Hymn.HymnID)
         </dd>
     </dl>
 </div>
