@@ -26,14 +26,22 @@ namespace SacramentPlannerMVC.Models
         public string ClosingPrayer { get; set; }
 
         [Required]
+        [Display(Name = "Conductor")]
         public int BishopricID { get; set; }
         public Bishopric Conductor { get; set; }
 
         public ICollection<Speaker> Speakers { get; set; }
 
+        [Display(Name = "Opening Hymn")]
         public int OpeningHymnID { get; set; }
+
+        [Display(Name = "Sacrament Hymn")]
         public int SacramentHymnID { get; set; }
+
+        [Display(Name = "Intermediate Hymn")]
         public int? IntermediateHymnID { get; set; }
+
+        [Display(Name = "Closing Hymn")]
         public int ClosingHymnID { get; set; }
         public Hymn Hymn { get; set; }
     }
