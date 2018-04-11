@@ -91,7 +91,7 @@ namespace SacramentPlannerMVC.Controllers
             {
                 return NotFound();
             }
-            ViewData["BishopricID"] = new SelectList(_context.Bishopric, "ID", "FullName", meeting.BishopricID);
+            ViewData["BishopricID"] = new SelectList(_context.Bishopric.Where(b => b.IsActive == true), "ID", "FullName", meeting.BishopricID);
             ViewData["OpeningHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnID", meeting.OpeningHymnID);
             ViewData["SacramentHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel");
             ViewData["IntermediateHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel");
@@ -131,7 +131,7 @@ namespace SacramentPlannerMVC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BishopricID"] = new SelectList(_context.Bishopric, "ID", "FullName", meeting.BishopricID);
+            ViewData["BishopricID"] = new SelectList(_context.Bishopric.Where(b => b.IsActive == true), "ID", "FullName", meeting.BishopricID);
             ViewData["OpeningHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnID", meeting.OpeningHymnID);
             ViewData["SacramentHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel");
             ViewData["IntermediateHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel");
