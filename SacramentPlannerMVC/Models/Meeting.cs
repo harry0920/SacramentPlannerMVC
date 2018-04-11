@@ -33,7 +33,7 @@ namespace SacramentPlannerMVC.Models
 
         public int OpeningHymnID { get; set; }
         public int SacramentHymnID { get; set; }
-        public int IntermediateHymnID { get; set; }
+        public int? IntermediateHymnID { get; set; }
         public int ClosingHymnID { get; set; }
         public Hymn Hymn { get; set; }
     }

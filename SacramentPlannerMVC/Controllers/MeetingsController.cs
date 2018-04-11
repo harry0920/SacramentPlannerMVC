@@ -104,7 +104,7 @@ namespace SacramentPlannerMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Date,OpeningPrayer,ClosingPrayer,BishopricID,HymnID")] Meeting meeting)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Date,OpeningPrayer,ClosingPrayer,BishopricID,OpeningHymnID,SacramentHymnID,IntermediateHymnID,ClosingHymnID")] Meeting meeting)
         {
             if (id != meeting.ID)
             {
@@ -131,7 +131,7 @@ namespace SacramentPlannerMVC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BishopricID"] = new SelectList(_context.Bishopric, "ID", "Discriminator", meeting.BishopricID);
+            ViewData["BishopricID"] = new SelectList(_context.Bishopric, "ID", "FullName", meeting.BishopricID);
             ViewData["OpeningHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnID", meeting.OpeningHymnID);
             ViewData["SacramentHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel");
             ViewData["IntermediateHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel");
