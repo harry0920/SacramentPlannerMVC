@@ -3,5 +3,7 @@
 
 function Add_Speaker()
 {
-    document.getElementById("add_speaker").innerHTML = "<input type='textbox' />"
+    var textbox = document.createElement('input');
+    textbox.type = 'text';
+    document.getElementById('add_speaker').appendChild(textbox) ;
 }
