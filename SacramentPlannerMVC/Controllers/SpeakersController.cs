@@ -48,7 +48,7 @@ namespace SacramentPlannerMVC.Controllers
         // GET: Speakers/Create
         public IActionResult Create()
         {
-            ViewData["MeetingID"] = new SelectList(_context.Meetings, "MeetingId", "ClosingPrayer");
+            ViewData["MeetingID"] = new SelectList(_context.Meetings, "MeetingId", "Date");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace SacramentPlannerMVC.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MeetingID"] = new SelectList(_context.Meetings, "MeetingId", "ClosingPrayer", speaker.MeetingID);
+            ViewData["MeetingID"] = new SelectList(_context.Meetings, "MeetingId", "Date", speaker.MeetingID);
             return View(speaker);
         }
 
@@ -82,7 +82,7 @@ namespace SacramentPlannerMVC.Controllers
             {
                 return NotFound();
             }
-            ViewData["MeetingID"] = new SelectList(_context.Meetings, "MeetingId", "ClosingPrayer", speaker.MeetingID);
+            ViewData["MeetingID"] = new SelectList(_context.Meetings, "MeetingId", "Date", speaker.MeetingID);
             return View(speaker);
         }
 
@@ -118,7 +118,7 @@ namespace SacramentPlannerMVC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MeetingID"] = new SelectList(_context.Meetings, "MeetingId", "ClosingPrayer", speaker.MeetingID);
+            ViewData["MeetingID"] = new SelectList(_context.Meetings, "MeetingId", "Date", speaker.MeetingID);
             return View(speaker);
         }
 
