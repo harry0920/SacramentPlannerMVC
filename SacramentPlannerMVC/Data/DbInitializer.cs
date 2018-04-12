@@ -29,46 +29,6 @@ namespace SacramentPlannerMVC.Data
                 context.Bishopric.Add(b);
             }
 
-            /*
-            var members = new Member[]
-            {
-              new Member{ FirstMidName="Bobbi"     ,LastName= "Paddock"       },     
-              new Member{ FirstMidName="Darcel"    ,LastName= "Okeeffe"       },
-              new Member{ FirstMidName="Kathyrn"   ,LastName= "Summey"        },
-              new Member{ FirstMidName="Divina"    ,LastName= "Rollin"        },
-              new Member{ FirstMidName="Chad"      ,LastName= "Witten"        },
-              new Member{ FirstMidName="Nathaniel" ,LastName= "Straughan"     },
-              new Member{ FirstMidName="Annamarie" ,LastName= "Gleaton"       },
-              new Member{ FirstMidName="Marielle"  ,LastName= "Ransome"       },
-              new Member{ FirstMidName="Edythe"    ,LastName= "Khalaf"        },
-              new Member{ FirstMidName="Gerardo"   ,LastName= "Odem"          },
-              new Member{ FirstMidName="Jennefer"  ,LastName= "Addison"       },
-              new Member{ FirstMidName="Suzie"     ,LastName= "Camara"        },
-              new Member{ FirstMidName="Neely"     ,LastName= "Hornstein"     },
-              new Member{ FirstMidName="Jessica"   ,LastName= "Parkinson"     },
-              new Member{ FirstMidName="Lael"      ,LastName= "Riggs"         },
-              new Member{ FirstMidName="Horacio"   ,LastName= "Bernardino"    },
-              new Member{ FirstMidName="Louise"    ,LastName= "Tindell"       },
-              new Member{ FirstMidName="Brittaney" ,LastName= "Lansing"       },
-              new Member{ FirstMidName="Cordia"    ,LastName= "Shadwick"      },
-              new Member{ FirstMidName="Dovie"     ,LastName= "Guerrero"      },
-              new Member{ FirstMidName="Lorean"    ,LastName= "Romano"        },
-              new Member{ FirstMidName="Marni"     ,LastName= "Almada"        },
-              new Member{ FirstMidName="Leora"     ,LastName= "Low"           },
-              new Member{ FirstMidName="Alfonzo"   ,LastName= "Duppstadt"     },
-              new Member{ FirstMidName="Rosalee"   ,LastName= "Christofferso" },
-              new Member{ FirstMidName="Pandora"   ,LastName= "Kist"          },
-              new Member{ FirstMidName="Hubert"    ,LastName= "Siegel"        },
-              new Member{ FirstMidName="Virgina"   ,LastName= "Agrawal"       },
-              new Member{ FirstMidName="Yahaira"   ,LastName= "Diener"        },
-              new Member{ FirstMidName="Salvatore" ,LastName= "Bickham"       }
-            };
-
-            foreach (Member b in members)
-            {
-                context.Members.Add(b);
-            } */
-
             var hymns = new Hymn[]
             {
                 new Hymn{ HymnNumber=1   , HymnTitle="The Morning Breaks                               "},
