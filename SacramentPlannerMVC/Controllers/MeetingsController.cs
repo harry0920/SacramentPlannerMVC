@@ -36,7 +36,11 @@ namespace SacramentPlannerMVC.Controllers
 
             var meeting = await _context.Meetings
                 .Include(m => m.Conductor)
-                .SingleOrDefaultAsync(m => m.ID == id);
+                .Include(m => m.OpeningHymnNav)
+                .Include(m => m.SacramentHymnNav)
+                .Include(m => m.IntermediateHymnNav)
+                .Include(m => m.ClosingHymnNav)
+                .SingleOrDefaultAsync(m => m.MeetingId == id);
             if (meeting == null)
             {
                 return NotFound();
@@ -85,7 +89,7 @@ namespace SacramentPlannerMVC.Controllers
                 return NotFound();
             }
 
-            var meeting = await _context.Meetings.SingleOrDefaultAsync(m => m.ID == id);
+            var meeting = await _context.Meetings.SingleOrDefaultAsync(m => m.MeetingId == id);
             if (meeting == null)
             {
                 return NotFound();
@@ -105,7 +109,7 @@ namespace SacramentPlannerMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID,Date,OpeningPrayer,ClosingPrayer,BishopricID,OpeningHymnID,SacramentHymnID,IntermediateHymnID,ClosingHymnID")] Meeting meeting)
         {
-            if (id != meeting.ID)
+            if (id != meeting.MeetingId)
             {
                 return NotFound();
             }
@@ -119,7 +123,7 @@ namespace SacramentPlannerMVC.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MeetingExists(meeting.ID))
+                    if (!MeetingExists(meeting.MeetingId))
                     {
                         return NotFound();
                     }
@@ -148,7 +152,11 @@ namespace SacramentPlannerMVC.Controllers
 
             var meeting = await _context.Meetings
                 .Include(m => m.Conductor)
-                .SingleOrDefaultAsync(m => m.ID == id);
+                .Include(m => m.OpeningHymnNav)
+                .Include(m => m.SacramentHymnNav)
+                .Include(m => m.IntermediateHymnNav)
+                .Include(m => m.ClosingHymnNav)
+                .SingleOrDefaultAsync(m => m.MeetingId == id);
             if (meeting == null)
             {
                 return NotFound();
@@ -162,7 +170,7 @@ namespace SacramentPlannerMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var meeting = await _context.Meetings.SingleOrDefaultAsync(m => m.ID == id);
+            var meeting = await _context.Meetings.SingleOrDefaultAsync(m => m.MeetingId == id);
             _context.Meetings.Remove(meeting);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -170,7 +178,7 @@ namespace SacramentPlannerMVC.Controllers
 
         private bool MeetingExists(int id)
         {
-            return _context.Meetings.Any(e => e.ID == id);
+            return _context.Meetings.Any(e => e.MeetingId == id);
         }
     }
 }

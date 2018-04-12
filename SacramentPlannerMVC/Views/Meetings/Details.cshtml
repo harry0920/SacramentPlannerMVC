@@ -32,7 +32,7 @@
             @Html.DisplayNameFor(model => model.Conductor)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Conductor.FullName)
+            @Html.DisplayFor(model => model.Conductor.Name)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.OpeningHymnID)
@@ -61,6 +61,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.MeetingId">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

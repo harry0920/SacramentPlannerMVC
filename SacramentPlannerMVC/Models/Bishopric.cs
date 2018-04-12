@@ -1,11 +1,20 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SacramentPlannerMVC.Models
 {
-    public class Bishopric: Member
+    public partial class Bishopric
     {
+        public int BishopricId { get; set; }
+        
         [Required]
-        public bool IsActive { get; set; }       
+        public string Name { get; set; }
+
+        [Required]
+        public bool IsActive { get; set; }
+
+        public ICollection<Meeting> Meeting { get; set; }
+        
     }
 }

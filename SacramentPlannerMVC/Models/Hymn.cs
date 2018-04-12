@@ -1,22 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace SacramentPlannerMVC.Models
 {
-    public class Hymn
+    public partial class Hymn
     {
-        public int HymnID { get; set; }
-        public int HymnNumber { get; set; }
+        public Hymn()
+        {
+            MeetingOpeningHymnNav = new HashSet<Meeting>();
+            MeetingSacramentHymnNav = new HashSet<Meeting>();
+            MeetingIntermediateHymnNav = new HashSet<Meeting>();
+            MeetingClosingHymnNav = new HashSet<Meeting>();
+        }
+
+        [Display(Name = "Hymn Number")]
+        public int HymnId { get; set; }
+
         public string HymnTitle { get; set; }
 
         public string HymnLabel
         {
             get
             {
-                return HymnID + " - " + HymnTitle;
+                return HymnId + " - " + HymnTitle;
             }
         }
+
+        public ICollection<Meeting> MeetingOpeningHymnNav { get; set; }
+        public ICollection<Meeting> MeetingSacramentHymnNav { get; set; }
+        public ICollection<Meeting> MeetingIntermediateHymnNav { get; set; }
+        public ICollection<Meeting> MeetingClosingHymnNav { get; set; }
     }
 }

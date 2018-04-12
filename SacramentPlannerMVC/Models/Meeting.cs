@@ -5,9 +5,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SacramentPlannerMVC.Models
 {
-    public class Meeting
+    public partial class Meeting
     {
-        public int ID { get; set; }
+        public Meeting()
+        {
+            Speakers = new HashSet<Speaker>();
+        }
+
+        public int MeetingId { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
@@ -30,8 +35,6 @@ namespace SacramentPlannerMVC.Models
         public int BishopricID { get; set; }
         public Bishopric Conductor { get; set; }
 
-        public ICollection<Speaker> Speakers { get; set; }
-
         [Display(Name = "Opening Hymn")]
         public int OpeningHymnID { get; set; }
 
@@ -43,5 +46,11 @@ namespace SacramentPlannerMVC.Models
 
         [Display(Name = "Closing Hymn")]
         public int ClosingHymnID { get; set; }
+
+        public ICollection<Speaker> Speakers { get; set; }
+        public Hymn OpeningHymnNav { get; set; }
+        public Hymn SacramentHymnNav { get; set; }
+        public Hymn IntermediateHymnNav { get; set; }
+        public Hymn ClosingHymnNav { get; set; }
     }
 }
