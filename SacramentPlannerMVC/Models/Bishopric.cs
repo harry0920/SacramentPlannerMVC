@@ -6,7 +6,7 @@ namespace SacramentPlannerMVC.Models
 {
     public partial class Bishopric
     {
-        public int BishopricId { get; set; }
+        public int ID { get; set; }
         
         [Required]
         public string Name { get; set; }

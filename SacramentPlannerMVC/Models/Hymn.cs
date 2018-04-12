@@ -17,7 +17,7 @@ namespace SacramentPlannerMVC.Models
         }
 
         [Display(Name = "Hymn Number")]
-        public int HymnId { get; set; }
+        public int ID { get; set; }
 
         public string HymnTitle { get; set; }
 
@@ -25,7 +25,7 @@ namespace SacramentPlannerMVC.Models
         {
             get
             {
-                return HymnId + " - " + HymnTitle;
+                return ID + " - " + HymnTitle;
             }
         }
 

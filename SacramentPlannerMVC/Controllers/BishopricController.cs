@@ -34,7 +34,7 @@ namespace SacramentPlannerMVC.Controllers
             }
 
             var bishopric = await _context.Bishopric
-                .SingleOrDefaultAsync(m => m.BishopricId == id);
+                .SingleOrDefaultAsync(m => m.ID == id);
             if (bishopric == null)
             {
                 return NotFound();
@@ -73,7 +73,7 @@ namespace SacramentPlannerMVC.Controllers
                 return NotFound();
             }
 
-            var bishopric = await _context.Bishopric.SingleOrDefaultAsync(m => m.BishopricId == id);
+            var bishopric = await _context.Bishopric.SingleOrDefaultAsync(m => m.ID == id);
             if (bishopric == null)
             {
                 return NotFound();
@@ -88,7 +88,7 @@ namespace SacramentPlannerMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("BishopricId,Name,IsActive")] Bishopric bishopric)
         {
-            if (id != bishopric.BishopricId)
+            if (id != bishopric.ID)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace SacramentPlannerMVC.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!BishopricExists(bishopric.BishopricId))
+                    if (!BishopricExists(bishopric.ID))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace SacramentPlannerMVC.Controllers
             }
 
             var bishopric = await _context.Bishopric
-                .SingleOrDefaultAsync(m => m.BishopricId == id);
+                .SingleOrDefaultAsync(m => m.ID == id);
             if (bishopric == null)
             {
                 return NotFound();
@@ -139,7 +139,7 @@ namespace SacramentPlannerMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var bishopric = await _context.Bishopric.SingleOrDefaultAsync(m => m.BishopricId == id);
+            var bishopric = await _context.Bishopric.SingleOrDefaultAsync(m => m.ID == id);
             _context.Bishopric.Remove(bishopric);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -147,7 +147,7 @@ namespace SacramentPlannerMVC.Controllers
 
         private bool BishopricExists(int id)
         {
-            return _context.Bishopric.Any(e => e.BishopricId == id);
+            return _context.Bishopric.Any(e => e.ID == id);
         }
     }
 }

@@ -30,7 +30,7 @@ namespace SacramentPlannerMVC.Data
                 
                 
             modelBuilder.Entity<Speaker>().ToTable("Speaker");
-            modelBuilder.Entity<Hymn>().ToTable("Hymn");
+            modelBuilder.Entity<Hymn>().ToTable("Hymns");
             modelBuilder.Entity<Member>().ToTable("Member");
         }
     }
