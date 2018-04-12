@@ -19,7 +19,7 @@ namespace SacramentPlannerMVC.Models
         public int ID { get; set; }
 
         [Display(Name = "Hymn Number")]
-        public int HymnID { get; set; }
+        public int HymnNumber { get; set; }
 
         public string HymnTitle { get; set; }
 
@@ -27,7 +27,7 @@ namespace SacramentPlannerMVC.Models
         {
             get
             {
-                return HymnID + " - " + HymnTitle;
+                return HymnNumber + " - " + HymnTitle;
             }
         }
 
