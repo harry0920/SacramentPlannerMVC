@@ -48,9 +48,13 @@ namespace SacramentPlannerMVC.Models
         public int ClosingHymnID { get; set; }
 
         public ICollection<Speaker> Speakers { get; set; }
+        [Display(Name = "Opening Hymn")]
         public Hymn OpeningHymnNav { get; set; }
+        [Display(Name = "Sacrament Hymn")]
         public Hymn SacramentHymnNav { get; set; }
+        [Display(Name = "Intermediate Hymn")]
         public Hymn IntermediateHymnNav { get; set; }
+        [Display(Name = "Closing Hymn")]
         public Hymn ClosingHymnNav { get; set; }
     }
 }
