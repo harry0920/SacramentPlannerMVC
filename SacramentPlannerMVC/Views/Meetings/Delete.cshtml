@@ -30,21 +30,39 @@
             @Html.DisplayFor(model => model.ClosingPrayer)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.ClosingHymnNav)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ClosingHymnNav.HymnId)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.Conductor)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Conductor.FullName)
+            @Html.DisplayFor(model => model.Conductor.Name)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Hymn)
+            @Html.DisplayNameFor(model => model.IntermediateHymnNav)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Hymn.HymnID)
+            @Html.DisplayFor(model => model.IntermediateHymnNav.HymnId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OpeningHymnNav)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OpeningHymnNav.HymnId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SacramentHymnNav)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SacramentHymnNav.HymnId)
         </dd>
     </dl>
     
     <form asp-action="Delete">
-        <input type="hidden" asp-for="ID" />
+        <input type="hidden" asp-for="MeetingId" />
         <input type="submit" value="Delete" class="btn btn-default" /> |
         <a asp-action="Index">Back to List</a>
     </form>

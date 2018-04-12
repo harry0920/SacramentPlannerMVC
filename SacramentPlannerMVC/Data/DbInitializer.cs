@@ -67,8 +67,6 @@ namespace SacramentPlannerMVC.Data
                 context.Members.Add(b);
             }
 
-
-
             var hymns = new Hymn[]
             {
                 new Hymn{ HymnId=1   , HymnTitle="The Morning Breaks                               "},

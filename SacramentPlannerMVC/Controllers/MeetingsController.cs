@@ -22,7 +22,7 @@ namespace SacramentPlannerMVC.Controllers
         // GET: Meetings
         public async Task<IActionResult> Index()
         {
-            var sacramentContext = _context.Meetings.Include(m => m.Conductor);
+            var sacramentContext = _context.Meetings.Include(m => m.ClosingHymnNav).Include(m => m.Conductor).Include(m => m.IntermediateHymnNav).Include(m => m.OpeningHymnNav).Include(m => m.SacramentHymnNav);
             return View(await sacramentContext.ToListAsync());
         }
 
@@ -35,11 +35,11 @@ namespace SacramentPlannerMVC.Controllers
             }
 
             var meeting = await _context.Meetings
+                .Include(m => m.ClosingHymnNav)
                 .Include(m => m.Conductor)
+                .Include(m => m.IntermediateHymnNav)
                 .Include(m => m.OpeningHymnNav)
                 .Include(m => m.SacramentHymnNav)
-                .Include(m => m.IntermediateHymnNav)
-                .Include(m => m.ClosingHymnNav)
                 .SingleOrDefaultAsync(m => m.MeetingId == id);
             if (meeting == null)
             {
@@ -52,11 +52,11 @@ namespace SacramentPlannerMVC.Controllers
         // GET: Meetings/Create
         public IActionResult Create()
         {
-            ViewData["BishopricID"] = new SelectList(_context.Bishopric.Where(b => b.IsActive == true), "ID", "FullName");
-            ViewData["OpeningHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel");
-            ViewData["SacramentHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel");
-            ViewData["IntermediateHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel");
-            ViewData["ClosingHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel");
+            ViewData["ClosingHymnID"] = new SelectList(_context.Hymns, "HymnId", "HymnId");
+            ViewData["BishopricID"] = new SelectList(_context.Bishopric, "BishopricId", "Name");
+            ViewData["IntermediateHymnID"] = new SelectList(_context.Hymns, "HymnId", "HymnId");
+            ViewData["OpeningHymnID"] = new SelectList(_context.Hymns, "HymnId", "HymnId");
+            ViewData["SacramentHymnID"] = new SelectList(_context.Hymns, "HymnId", "HymnId");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace SacramentPlannerMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Date,OpeningPrayer,ClosingPrayer,BishopricID,OpeningHymnID,SacramentHymnID,IntermediateHymnID,ClosingHymnID")] Meeting meeting)
+        public async Task<IActionResult> Create([Bind("MeetingId,Date,OpeningPrayer,ClosingPrayer,BishopricID,OpeningHymnID,SacramentHymnID,IntermediateHymnID,ClosingHymnID")] Meeting meeting)
         {
             if (ModelState.IsValid)
             {
@@ -73,11 +73,11 @@ namespace SacramentPlannerMVC.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BishopricID"] = new SelectList(_context.Bishopric.Where(b => b.IsActive == true), "ID", "FullName", meeting.BishopricID);
-            ViewData["OpeningHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel", meeting.OpeningHymnID);
-            ViewData["SacramentHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel", meeting.SacramentHymnID);
-            ViewData["IntermediateHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel", meeting.IntermediateHymnID);
-            ViewData["ClosingHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel", meeting.ClosingHymnID);
+            ViewData["ClosingHymnID"] = new SelectList(_context.Hymns, "HymnId", "HymnId", meeting.ClosingHymnID);
+            ViewData["BishopricID"] = new SelectList(_context.Bishopric, "BishopricId", "Name", meeting.BishopricID);
+            ViewData["IntermediateHymnID"] = new SelectList(_context.Hymns, "HymnId", "HymnId", meeting.IntermediateHymnID);
+            ViewData["OpeningHymnID"] = new SelectList(_context.Hymns, "HymnId", "HymnId", meeting.OpeningHymnID);
+            ViewData["SacramentHymnID"] = new SelectList(_context.Hymns, "HymnId", "HymnId", meeting.SacramentHymnID);
             return View(meeting);
         }
 
@@ -94,11 +94,11 @@ namespace SacramentPlannerMVC.Controllers
             {
                 return NotFound();
             }
-            ViewData["BishopricID"] = new SelectList(_context.Bishopric.Where(b => b.IsActive == true), "ID", "FullName", meeting.BishopricID);
-            ViewData["OpeningHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnID", meeting.OpeningHymnID);
-            ViewData["SacramentHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel", meeting.SacramentHymnID);
-            ViewData["IntermediateHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel", meeting.IntermediateHymnID);
-            ViewData["ClosingHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel", meeting.ClosingHymnID);
+            ViewData["ClosingHymnID"] = new SelectList(_context.Hymns, "HymnId", "HymnId", meeting.ClosingHymnID);
+            ViewData["BishopricID"] = new SelectList(_context.Bishopric, "BishopricId", "Name", meeting.BishopricID);
+            ViewData["IntermediateHymnID"] = new SelectList(_context.Hymns, "HymnId", "HymnId", meeting.IntermediateHymnID);
+            ViewData["OpeningHymnID"] = new SelectList(_context.Hymns, "HymnId", "HymnId", meeting.OpeningHymnID);
+            ViewData["SacramentHymnID"] = new SelectList(_context.Hymns, "HymnId", "HymnId", meeting.SacramentHymnID);
             return View(meeting);
         }
 
@@ -107,7 +107,7 @@ namespace SacramentPlannerMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Date,OpeningPrayer,ClosingPrayer,BishopricID,OpeningHymnID,SacramentHymnID,IntermediateHymnID,ClosingHymnID")] Meeting meeting)
+        public async Task<IActionResult> Edit(int id, [Bind("MeetingId,Date,OpeningPrayer,ClosingPrayer,BishopricID,OpeningHymnID,SacramentHymnID,IntermediateHymnID,ClosingHymnID")] Meeting meeting)
         {
             if (id != meeting.MeetingId)
             {
@@ -134,11 +134,11 @@ namespace SacramentPlannerMVC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BishopricID"] = new SelectList(_context.Bishopric.Where(b => b.IsActive == true), "ID", "FullName", meeting.BishopricID);
-            ViewData["OpeningHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnID", meeting.OpeningHymnID);
-            ViewData["SacramentHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel", meeting.SacramentHymnID);
-            ViewData["IntermediateHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel", meeting.IntermediateHymnID);
-            ViewData["ClosingHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel", meeting.ClosingHymnID);
+            ViewData["ClosingHymnID"] = new SelectList(_context.Hymns, "HymnId", "HymnId", meeting.ClosingHymnID);
+            ViewData["BishopricID"] = new SelectList(_context.Bishopric, "BishopricId", "Name", meeting.BishopricID);
+            ViewData["IntermediateHymnID"] = new SelectList(_context.Hymns, "HymnId", "HymnId", meeting.IntermediateHymnID);
+            ViewData["OpeningHymnID"] = new SelectList(_context.Hymns, "HymnId", "HymnId", meeting.OpeningHymnID);
+            ViewData["SacramentHymnID"] = new SelectList(_context.Hymns, "HymnId", "HymnId", meeting.SacramentHymnID);
             return View(meeting);
         }
 
@@ -151,11 +151,11 @@ namespace SacramentPlannerMVC.Controllers
             }
 
             var meeting = await _context.Meetings
+                .Include(m => m.ClosingHymnNav)
                 .Include(m => m.Conductor)
+                .Include(m => m.IntermediateHymnNav)
                 .Include(m => m.OpeningHymnNav)
                 .Include(m => m.SacramentHymnNav)
-                .Include(m => m.IntermediateHymnNav)
-                .Include(m => m.ClosingHymnNav)
                 .SingleOrDefaultAsync(m => m.MeetingId == id);
             if (meeting == null)
             {

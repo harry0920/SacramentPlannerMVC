@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<SacramentPlannerMVC.Models.Meeting>
 
 @{
-    ViewData["Title"] = "Meetings";
+    ViewData["Title"] = "Index";
 }
 
-<h2>Meetings</h2>
+<h2>Index</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -12,43 +12,66 @@
 <table class="table">
     <thead>
         <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.OpeningPrayer)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ClosingPrayer)
+                </th>
             <th>
-                @Html.DisplayNameFor(model => model.Date)
+                @Html.DisplayNameFor(model => model.ClosingHymnNav)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Conductor)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OpeningPrayer)
+                @Html.DisplayNameFor(model => model.IntermediateHymnNav)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ClosingPrayer)
+                @Html.DisplayNameFor(model => model.OpeningHymnNav)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SacramentHymnNav)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Date)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Conductor.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.OpeningPrayer)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ClosingPrayer)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.MeetingId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.MeetingId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.MeetingId">Delete</a>
-                </td>
-            </tr>
-        }
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OpeningPrayer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClosingPrayer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClosingHymnNav.HymnId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Conductor.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IntermediateHymnNav.HymnId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OpeningHymnNav.HymnId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SacramentHymnNav.HymnId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.MeetingId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.MeetingId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.MeetingId">Delete</a>
+            </td>
+        </tr>
+}
     </tbody>
 </table>
