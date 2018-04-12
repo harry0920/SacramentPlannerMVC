@@ -52,11 +52,11 @@ namespace SacramentPlannerMVC.Controllers
         // GET: Meetings/Create
         public IActionResult Create()
         {
-            ViewData["ClosingHymnID"] = new SelectList(_context.Hymns, "HymnId", "HymnId");
-            ViewData["BishopricID"] = new SelectList(_context.Bishopric, "BishopricId", "Name");
-            ViewData["IntermediateHymnID"] = new SelectList(_context.Hymns, "HymnId", "HymnId");
-            ViewData["OpeningHymnID"] = new SelectList(_context.Hymns, "HymnId", "HymnId");
-            ViewData["SacramentHymnID"] = new SelectList(_context.Hymns, "HymnId", "HymnId");
+            ViewData["ClosingHymnID"] = new SelectList(_context.Hymns, "ID", "HymnId");
+            ViewData["BishopricID"] = new SelectList(_context.Bishopric, "ID", "Name");
+            ViewData["IntermediateHymnID"] = new SelectList(_context.Hymns, "ID", "HymnId");
+            ViewData["OpeningHymnID"] = new SelectList(_context.Hymns, "ID", "HymnId");
+            ViewData["SacramentHymnID"] = new SelectList(_context.Hymns, "ID", "HymnId");
             return View();
         }
 
