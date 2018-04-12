@@ -21,7 +21,8 @@ namespace SacramentPlannerMVC.Data
             {
                 new Bishopric{Name="Brother Thayne",IsActive=true},
                 new Bishopric{Name="Zach Wilson",IsActive=true},
-                new Bishopric{Name="TadCooper",IsActive=true}
+                new Bishopric{Name="TadCooper",IsActive=true},
+                new Bishopric{Name="Satan",IsActive=false}
             };
             foreach (Bishopric b in bishoprics)
             {

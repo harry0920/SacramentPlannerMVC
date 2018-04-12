@@ -53,7 +53,7 @@ namespace SacramentPlannerMVC.Controllers
         public IActionResult Create()
         {
             ViewData["ClosingHymnID"] = new SelectList(_context.Hymns.OrderBy(h => h.HymnID), "HymnID", "HymnLabel");
-            ViewData["BishopricID"] = new SelectList(_context.Bishopric, "ID", "Name");
+            ViewData["BishopricID"] = new SelectList(_context.Bishopric.Where(b => b.IsActive == true), "ID", "Name");
             ViewData["IntermediateHymnID"] = new SelectList(_context.Hymns.OrderBy(h => h.HymnID), "HymnID", "HymnLabel");
             ViewData["OpeningHymnID"] = new SelectList(_context.Hymns.OrderBy(h => h.HymnID), "HymnID", "HymnLabel");
             ViewData["SacramentHymnID"] = new SelectList(_context.Hymns.OrderBy(h => h.HymnID), "HymnID", "HymnLabel");
@@ -74,7 +74,7 @@ namespace SacramentPlannerMVC.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ClosingHymnID"] = new SelectList(_context.Hymns.OrderBy(h => h.HymnID), "HymnID", "HymnLabel", meeting.ClosingHymnID);
-            ViewData["BishopricID"] = new SelectList(_context.Bishopric, "ID", "Name", meeting.BishopricID);
+            ViewData["BishopricID"] = new SelectList(_context.Bishopric.Where(b => b.IsActive == true), "ID", "Name", meeting.BishopricID);
             ViewData["IntermediateHymnID"] = new SelectList(_context.Hymns.OrderBy(h => h.HymnID), "HymnID", "HymnLabel", meeting.IntermediateHymnID);
             ViewData["OpeningHymnID"] = new SelectList(_context.Hymns.OrderBy(h => h.HymnID), "HymnID", "HymnLabel", meeting.OpeningHymnID);
             ViewData["SacramentHymnID"] = new SelectList(_context.Hymns.OrderBy(h => h.HymnID), "HymnID", "HymnLabel", meeting.SacramentHymnID);
@@ -95,7 +95,7 @@ namespace SacramentPlannerMVC.Controllers
                 return NotFound();
             }
             ViewData["ClosingHymnID"] = new SelectList(_context.Hymns.OrderBy(h => h.HymnID), "HymnId", "HymnId", meeting.ClosingHymnID);
-            ViewData["BishopricID"] = new SelectList(_context.Bishopric, "ID", "Name", meeting.BishopricID);
+            ViewData["BishopricID"] = new SelectList(_context.Bishopric.Where(b => b.IsActive == true), "ID", "Name", meeting.BishopricID);
             ViewData["IntermediateHymnID"] = new SelectList(_context.Hymns.OrderBy(h => h.HymnID), "HymnId", "HymnId", meeting.IntermediateHymnID);
             ViewData["OpeningHymnID"] = new SelectList(_context.Hymns.OrderBy(h => h.HymnID), "HymnId", "HymnId", meeting.OpeningHymnID);
             ViewData["SacramentHymnID"] = new SelectList(_context.Hymns.OrderBy(h => h.HymnID), "HymnId", "HymnId", meeting.SacramentHymnID);
@@ -134,11 +134,11 @@ namespace SacramentPlannerMVC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClosingHymnID"] = new SelectList(_context.Hymns, "HymnId", "HymnId", meeting.ClosingHymnID);
-            ViewData["BishopricID"] = new SelectList(_context.Bishopric, "BishopricId", "Name", meeting.BishopricID);
-            ViewData["IntermediateHymnID"] = new SelectList(_context.Hymns, "HymnId", "HymnId", meeting.IntermediateHymnID);
-            ViewData["OpeningHymnID"] = new SelectList(_context.Hymns, "HymnId", "HymnId", meeting.OpeningHymnID);
-            ViewData["SacramentHymnID"] = new SelectList(_context.Hymns, "HymnId", "HymnId", meeting.SacramentHymnID);
+            ViewData["ClosingHymnID"] = new SelectList(_context.Hymns.OrderBy(h => h.HymnID), "HymnId", "HymnId", meeting.ClosingHymnID);
+            ViewData["BishopricID"] = new SelectList(_context.Bishopric.Where(b => b.IsActive == true), "BishopricId", "Name", meeting.BishopricID);
+            ViewData["IntermediateHymnID"] = new SelectList(_context.Hymns.OrderBy(h => h.HymnID), "HymnId", "HymnId", meeting.IntermediateHymnID);
+            ViewData["OpeningHymnID"] = new SelectList(_context.Hymns.OrderBy(h => h.HymnID), "HymnId", "HymnId", meeting.OpeningHymnID);
+            ViewData["SacramentHymnID"] = new SelectList(_context.Hymns.OrderBy(h => h.HymnID), "HymnId", "HymnId", meeting.SacramentHymnID);
             return View(meeting);
         }
 
