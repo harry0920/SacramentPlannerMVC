@@ -22,7 +22,7 @@ namespace SacramentPlannerMVC.Data
         {
             modelBuilder.Entity<Bishopric>().ToTable("Bishopric");
             modelBuilder.Entity<Meeting>().ToTable("Meeting");
-            // modelBuilder.Entity<Speaker>().ToTable("Speaker");
+            modelBuilder.Entity<Speaker>().ToTable("Speaker");
             modelBuilder.Entity<Hymn>().ToTable("Hymn");
             modelBuilder.Entity<Member>().ToTable("Member");
         }

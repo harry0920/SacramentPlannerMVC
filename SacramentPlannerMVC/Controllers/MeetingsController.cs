@@ -22,7 +22,7 @@ namespace SacramentPlannerMVC.Controllers
         // GET: Meetings
         public async Task<IActionResult> Index()
         {
-            var sacramentContext = _context.Meetings.Include(m => m.Conductor).Include(m => m.Hymn);
+            var sacramentContext = _context.Meetings.Include(m => m.Conductor);
             return View(await sacramentContext.ToListAsync());
         }
 
@@ -36,7 +36,6 @@ namespace SacramentPlannerMVC.Controllers
 
             var meeting = await _context.Meetings
                 .Include(m => m.Conductor)
-                .Include(m => m.Hymn)
                 .SingleOrDefaultAsync(m => m.ID == id);
             if (meeting == null)
             {
@@ -72,9 +71,9 @@ namespace SacramentPlannerMVC.Controllers
             }
             ViewData["BishopricID"] = new SelectList(_context.Bishopric.Where(b => b.IsActive == true), "ID", "FullName", meeting.BishopricID);
             ViewData["OpeningHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel", meeting.OpeningHymnID);
-            ViewData["SacramentHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel");
-            ViewData["IntermediateHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel");
-            ViewData["ClosingHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel");
+            ViewData["SacramentHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel", meeting.SacramentHymnID);
+            ViewData["IntermediateHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel", meeting.IntermediateHymnID);
+            ViewData["ClosingHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel", meeting.ClosingHymnID);
             return View(meeting);
         }
 
@@ -93,9 +92,9 @@ namespace SacramentPlannerMVC.Controllers
             }
             ViewData["BishopricID"] = new SelectList(_context.Bishopric.Where(b => b.IsActive == true), "ID", "FullName", meeting.BishopricID);
             ViewData["OpeningHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnID", meeting.OpeningHymnID);
-            ViewData["SacramentHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel");
-            ViewData["IntermediateHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel");
-            ViewData["ClosingHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel");
+            ViewData["SacramentHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel", meeting.SacramentHymnID);
+            ViewData["IntermediateHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel", meeting.IntermediateHymnID);
+            ViewData["ClosingHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel", meeting.ClosingHymnID);
             return View(meeting);
         }
 
@@ -133,9 +132,9 @@ namespace SacramentPlannerMVC.Controllers
             }
             ViewData["BishopricID"] = new SelectList(_context.Bishopric.Where(b => b.IsActive == true), "ID", "FullName", meeting.BishopricID);
             ViewData["OpeningHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnID", meeting.OpeningHymnID);
-            ViewData["SacramentHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel");
-            ViewData["IntermediateHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel");
-            ViewData["ClosingHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel");
+            ViewData["SacramentHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel", meeting.SacramentHymnID);
+            ViewData["IntermediateHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel", meeting.IntermediateHymnID);
+            ViewData["ClosingHymnID"] = new SelectList(_context.Hymns, "HymnID", "HymnLabel", meeting.ClosingHymnID);
             return View(meeting);
         }
 
@@ -149,7 +148,6 @@ namespace SacramentPlannerMVC.Controllers
 
             var meeting = await _context.Meetings
                 .Include(m => m.Conductor)
-                .Include(m => m.Hymn)
                 .SingleOrDefaultAsync(m => m.ID == id);
             if (meeting == null)
             {

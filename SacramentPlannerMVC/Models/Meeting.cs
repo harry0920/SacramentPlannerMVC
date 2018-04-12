@@ -43,6 +43,5 @@ namespace SacramentPlannerMVC.Models
 
         [Display(Name = "Closing Hymn")]
         public int ClosingHymnID { get; set; }
-        public Hymn Hymn { get; set; }
     }
 }
