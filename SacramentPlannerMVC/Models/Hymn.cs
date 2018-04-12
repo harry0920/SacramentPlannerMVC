@@ -16,8 +16,10 @@ namespace SacramentPlannerMVC.Models
             MeetingClosingHymnNav = new HashSet<Meeting>();
         }
 
-        [Display(Name = "Hymn Number")]
         public int ID { get; set; }
+
+        [Display(Name = "Hymn Number")]
+        public int HymnID { get; set; }
 
         public string HymnTitle { get; set; }
 
@@ -25,7 +27,7 @@ namespace SacramentPlannerMVC.Models
         {
             get
             {
-                return ID + " - " + HymnTitle;
+                return HymnID + " - " + HymnTitle;
             }
         }
 

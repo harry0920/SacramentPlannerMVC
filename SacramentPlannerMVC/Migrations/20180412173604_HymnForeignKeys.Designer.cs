@@ -12,9 +12,10 @@ using System;
 namespace SacramentPlannerMVC.Migrations
 {
     [DbContext(typeof(SacramentContext))]
-    partial class SacramentContextModelSnapshot : ModelSnapshot
+    [Migration("20180412173604_HymnForeignKeys")]
+    partial class HymnForeignKeys
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
