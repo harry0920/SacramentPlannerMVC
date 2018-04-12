@@ -29,28 +29,65 @@
             </div>
             <div class="form-group">
                 <label asp-for="BishopricID" class="control-label"></label>
-                <select asp-for="BishopricID" class ="form-control" asp-items="ViewBag.BishopricID"></select>
+                <select asp-for="BishopricID" class="form-control" asp-items="ViewBag.BishopricID"></select>
             </div>
             <div class="form-group">
                 <label asp-for="OpeningHymnID" class="control-label"></label>
-                <select asp-for="OpeningHymnID" class ="form-control" asp-items="ViewBag.OpeningHymnID"></select>
+                <select asp-for="OpeningHymnID" class="form-control" asp-items="ViewBag.OpeningHymnID"></select>
             </div>
             <div class="form-group">
                 <label asp-for="SacramentHymnID" class="control-label"></label>
-                <select asp-for="SacramentHymnID" class ="form-control" asp-items="ViewBag.SacramentHymnID"></select>
+                <select asp-for="SacramentHymnID" class="form-control" asp-items="ViewBag.SacramentHymnID"></select>
             </div>
             <div class="form-group">
                 <label asp-for="IntermediateHymnID" class="control-label"></label>
-                <select asp-for="IntermediateHymnID" class ="form-control" asp-items="ViewBag.IntermediateHymnID"></select>
+                <select asp-for="IntermediateHymnID" class="form-control" asp-items="ViewBag.IntermediateHymnID"></select>
             </div>
             <div class="form-group">
                 <label asp-for="ClosingHymnID" class="control-label"></label>
-                <select asp-for="ClosingHymnID" class ="form-control" asp-items="ViewBag.ClosingHymnID"></select>
+                <select asp-for="ClosingHymnID" class="form-control" asp-items="ViewBag.ClosingHymnID"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </form>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addSpeakerModal">
+            Add Speaker
+        </button>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="addSpeakerModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">New Speaker</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="loader" id="addSpeaker_loader"></div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Person</label>
+                            <input type="text" />
+                        </div>
+                        <div class="form-group">
+                            <label>Topic</label>
+                            <input type="text" />
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" value="Create" class="btn btn-success" onclick="createSpeaker()">Create </button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
     </div>
 </div>
 
