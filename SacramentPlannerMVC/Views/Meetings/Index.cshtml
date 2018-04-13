@@ -49,7 +49,7 @@
     <h3>Speakers</h3>
 
     <p>
-        <a class="btn btn-primary" asp-controller="Speakers" asp-action="Create">Add a Speaker</a>
+        <a class="btn btn-primary" asp-controller="Speakers" asp-action="Create" asp-route-id="@ViewData["MeetingId"]">Add a Speaker</a>
     </p>
 
     <table class="table">

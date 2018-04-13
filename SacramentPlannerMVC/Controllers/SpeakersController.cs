@@ -46,9 +46,9 @@ namespace SacramentPlannerMVC.Controllers
         }
 
         // GET: Speakers/Create
-        public IActionResult Create()
+        public IActionResult Create(int? id)
         {
-            ViewData["MeetingID"] = new SelectList(_context.Meetings, "MeetingId", "Date");
+            ViewData["MeetingID"] = id;
             return View();
         }
 
@@ -57,16 +57,17 @@ namespace SacramentPlannerMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,MeetingID,Name,Subject")] Speaker speaker)
+        public async Task<IActionResult> Create([Bind("MeetingID,Name,Subject")] Speaker speaker)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(speaker);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                return RedirectToAction("Index", "Meetings", new { id = speaker.MeetingID });
             }
-            ViewData["MeetingID"] = new SelectList(_context.Meetings, "MeetingId", "Date", speaker.MeetingID);
-            return View(speaker);
+            ViewData["MeetingID"] = new SelectList(_context.Meetings, "MeetingId", "MeetingId", speaker.MeetingID);
+            return RedirectToAction("Index", "Meetings", new { id = speaker.MeetingID });
         }
 
         // GET: Speakers/Edit/5
@@ -83,7 +84,7 @@ namespace SacramentPlannerMVC.Controllers
                 return NotFound();
             }
             ViewData["MeetingID"] = new SelectList(_context.Meetings, "MeetingId", "Date", speaker.MeetingID);
-            return View(speaker);
+            return View();
         }
 
         // POST: Speakers/Edit/5
@@ -93,11 +94,6 @@ namespace SacramentPlannerMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID,MeetingID,Name,Subject")] Speaker speaker)
         {
-            if (id != speaker.ID)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
                 try
@@ -116,10 +112,10 @@ namespace SacramentPlannerMVC.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Meetings", new { id = speaker.MeetingID });
             }
             ViewData["MeetingID"] = new SelectList(_context.Meetings, "MeetingId", "Date", speaker.MeetingID);
-            return View(speaker);
+            return RedirectToAction("Index", "Meetings", new { id = speaker.MeetingID });
         }
 
         // GET: Speakers/Delete/5
