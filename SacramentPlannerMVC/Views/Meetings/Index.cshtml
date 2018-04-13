@@ -1,10 +1,10 @@
-﻿@model IEnumerable<SacramentPlannerMVC.Models.Meeting>
+﻿@model SacramentPlannerMVC.Models.MeetingIndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Sacrament Meetings";
 }
 
-<h2>Index</h2>
+<h2>Sacrament Meetings</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -12,25 +12,20 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Conductor)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OpeningPrayer)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ClosingPrayer)
-            </th>
+            <th>Date</th>
+            <th>Conductor</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.Meetings)
         {
-            <tr>
+            string selectedRow = "";
+            if (item.MeetingId == (int?)ViewData["MeetingId"])
+            {
+                selectedRow = "success";
+            }
+            <tr class="@selectedRow">
                 <td>
                     @Html.DisplayFor(modelItem => item.Date)
                 </td>
@@ -38,17 +33,53 @@
                     @Html.DisplayFor(modelItem => item.Conductor.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.OpeningPrayer)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ClosingPrayer)
-                </td>
-                <td>
+                    <a asp-action="Index" asp-route-id="@item.MeetingId">Select</a> |
                     <a asp-action="Edit" asp-route-id="@item.MeetingId">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.MeetingId">Details</a> |
                     <a asp-action="Delete" asp-route-id="@item.MeetingId">Delete</a>
                 </td>
             </tr>
+
         }
     </tbody>
 </table>
+
+@if (Model.Speakers != null)
+{
+    <h3>Speakers</h3>
+
+    <p>
+        <a class="btn btn-primary" asp-controller="Speakers" asp-action="Create">Add a Speaker</a>
+    </p>
+
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Subject</th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Speakers)
+        {
+            string selectedRow = "";
+            if (item.MeetingID == (int?)ViewData["MeetingID"])
+            {
+                selectedRow = "success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Subject)
+                </td>
+                <td>
+                    <a asp-controller="Speakers" asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-controller="Speakers" asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
+
+        }
+    </table>
+
+}

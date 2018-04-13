@@ -20,10 +20,33 @@ namespace SacramentPlannerMVC.Controllers
         }
 
         // GET: Meetings
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? id)
         {
-            var sacramentContext = _context.Meetings.Include(m => m.ClosingHymnNav).Include(m => m.Conductor).Include(m => m.IntermediateHymnNav).Include(m => m.OpeningHymnNav).Include(m => m.SacramentHymnNav);
-            return View(await sacramentContext.ToListAsync());
+            var viewModel = new MeetingIndexModel
+            {
+                Meetings = await _context.Meetings
+                .Include(m => m.ClosingHymnNav)
+                .Include(m => m.Conductor)
+                .Include(m => m.IntermediateHymnNav)
+                .Include(m => m.OpeningHymnNav)
+                .Include(m => m.SacramentHymnNav)
+                .ToListAsync()
+            };
+
+            if (id != null)
+            {
+                ViewData["MeetingID"] = id.Value;
+
+                var speakers = await _context.Speakers
+                    .Where(s => s.MeetingID == id)
+                    .ToListAsync();
+
+                viewModel.Speakers = speakers;
+
+                ViewData["MeetingID"] = id;
+            }
+
+            return View(viewModel);
         }
 
         // GET: Meetings/Details/5
