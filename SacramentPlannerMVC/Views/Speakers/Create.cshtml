@@ -13,6 +13,7 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
+            <input type="hidden" asp-for="MeetingID" class="form-control" value="@ViewData["MeetingID"]" />
             @Html.HiddenFor(model => model.MeetingID)
 
             <div class="form-group">
