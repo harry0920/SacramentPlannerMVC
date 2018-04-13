@@ -65,7 +65,7 @@ namespace SacramentPlannerMVC.Data
             };
 
             foreach (Member b in members)
-            {
+            { 
                 context.Members.Add(b);
             } */
 
