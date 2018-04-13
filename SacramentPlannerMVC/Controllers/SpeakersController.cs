@@ -145,7 +145,7 @@ namespace SacramentPlannerMVC.Controllers
             var speaker = await _context.Speakers.SingleOrDefaultAsync(m => m.ID == id);
             _context.Speakers.Remove(speaker);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Meetings", new { id = speaker.MeetingID });
         }
 
         private bool SpeakerExists(int id)
