@@ -5,10 +5,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SacramentPlannerMVC.Models
 {
-    public class Speaker: Member
+    public partial class Speaker
     {
+        public int ID { get; set; }
+
+        public int MeetingID { get; set; }
+
+        public string Name { get; set; }
+
         [StringLength(50)]
         [Required]
         public string Subject { get; set; }
+
+        public Meeting Meeting { get; set; }
     }
 }

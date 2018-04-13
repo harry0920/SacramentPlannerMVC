@@ -13,13 +13,11 @@ namespace SacramentPlannerMVC.Data
         public virtual DbSet<Bishopric> Bishopric { get; set; }
         public virtual DbSet<Meeting> Meetings { get; set; }
         public virtual DbSet<Speaker> Speakers { get; set; }
-        public virtual DbSet<Member> Members { get; set; }
         public virtual DbSet<Hymn> Hymns { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Bishopric>().ToTable("Bishopric");
-            modelBuilder.Entity<Member>().ToTable("Member");
             modelBuilder.Entity<Hymn>().ToTable("Hymns");
             modelBuilder.Entity<Meeting>(entity =>
             {
