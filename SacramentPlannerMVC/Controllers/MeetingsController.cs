@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SacramentPlannerMVC.Data;
 using SacramentPlannerMVC.Models;
+using SacramentPlannerMVC.Models.ViewModels;
 
 namespace SacramentPlannerMVC.Controllers
 {
@@ -64,12 +65,35 @@ namespace SacramentPlannerMVC.Controllers
                 .Include(m => m.OpeningHymnNav)
                 .Include(m => m.SacramentHymnNav)
                 .SingleOrDefaultAsync(m => m.MeetingId == id);
+
+            MeetingDetailView viewModel = new MeetingDetailView();
+            viewModel.Meeting = meeting;
+
+            var conductor = await _context.Bishopric
+                .SingleOrDefaultAsync(m => m.ID == meeting.BishopricID);
+
+            viewModel.Conductor = conductor;
+
+            ViewData["MeetingID"] = id.Value;
+
+            var speakers = await _context.Speakers
+                .Where(s => s.MeetingID == id)
+                .ToListAsync();
+
+            viewModel.Speakers = speakers;
+
             if (meeting == null)
             {
                 return NotFound();
             }
 
-            return View(meeting);
+            ViewData["ClosingHymnID"] = new SelectList(_context.Hymns.OrderBy(h => h.HymnNumber), "ID", "HymnLabel");
+            ViewData["BishopricID"] = new SelectList(_context.Bishopric.Where(b => b.IsActive == true), "ID", "Name");
+            ViewData["IntermediateHymnID"] = new SelectList(_context.Hymns.OrderBy(h => h.HymnNumber), "ID", "HymnLabel");
+            ViewData["OpeningHymnID"] = new SelectList(_context.Hymns.OrderBy(h => h.HymnNumber), "ID", "HymnLabel");
+            ViewData["SacramentHymnID"] = new SelectList(_context.Hymns.OrderBy(h => h.HymnNumber), "ID", "HymnLabel");
+
+            return View(viewModel);
         }
 
         // GET: Meetings/Create

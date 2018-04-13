@@ -1,4 +1,4 @@
-﻿@model SacramentPlannerMVC.Models.Meeting
+﻿@model SacramentPlannerMVC.Models.ViewModels.MeetingDetailView
 
 @{
     ViewData["Title"] = "Details";
@@ -11,10 +11,10 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Date)
+            @Html.DisplayNameFor(model => model.Meeting.Date)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Date)
+            @Html.DisplayFor(model => model.Meeting.Date)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Conductor)
@@ -23,44 +23,53 @@
             @Html.DisplayFor(model => model.Conductor.Name)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.OpeningHymnNav)
+            @Html.DisplayNameFor(model => model.Meeting.OpeningHymnNav)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.OpeningHymnNav.HymnLabel)
+            @Html.DisplayFor(model => model.Meeting.OpeningHymnNav.HymnLabel)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.OpeningPrayer)
+            @Html.DisplayNameFor(model => model.Meeting.OpeningPrayer)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.OpeningPrayer)
+            @Html.DisplayFor(model => model.Meeting.OpeningPrayer)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.SacramentHymnNav)
+            @Html.DisplayNameFor(model => model.Meeting.SacramentHymnNav)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.SacramentHymnNav.HymnLabel)
+            @Html.DisplayFor(model => model.Meeting.SacramentHymnNav.HymnLabel)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.IntermediateHymnNav)
+            @Html.DisplayNameFor(model => model.Meeting.IntermediateHymnNav)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.IntermediateHymnNav.HymnLabel)
+            @Html.DisplayFor(model => model.Meeting.IntermediateHymnNav.HymnLabel)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.ClosingHymnNav)
+            @Html.DisplayNameFor(model => model.Meeting.ClosingHymnNav)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.ClosingHymnNav.HymnLabel)
+            @Html.DisplayFor(model => model.Meeting.ClosingHymnNav.HymnLabel)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.ClosingPrayer)
+            @Html.DisplayNameFor(model => model.Meeting.ClosingPrayer)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.ClosingPrayer)
+            @Html.DisplayFor(model => model.Meeting.ClosingPrayer)
         </dd>
+    </dl>
+
+    <h4>Speakers</h4>
+    <dl class="dl-horizontal">
+        @foreach (var item in Model.Speakers)
+        {
+            <dt>@Html.DisplayFor(modelItem => item.Name)</dt>
+            <dd>@Html.DisplayFor(modelItem => item.Subject)</dd>
+        }
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.MeetingId">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.Meeting.MeetingId">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
